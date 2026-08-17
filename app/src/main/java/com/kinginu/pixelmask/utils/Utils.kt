@@ -71,7 +71,7 @@ object Utils {
         // users routinely forget to mention which build they're on. Permitted by
         // the <queries> entry for com.google.android.apps.photos in the manifest.
         val photosVersion = runCatching {
-            val pi = context.packageManager.getPackageInfo(Constants.PACKAGE_NAME_GOOGLE_PHOTOS, 0)
+            val pi = context.packageManager.getPackageInfo(packageName, 0)
             "${pi.versionName} (code ${PackageInfoCompat.getLongVersionCode(pi)})"
         }.getOrDefault("not installed")
 

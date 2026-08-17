@@ -2,7 +2,6 @@ package com.kinginu.pixelmask
 
 object Constants {
 
-    const val PACKAGE_NAME_GOOGLE_PHOTOS = "com.google.android.apps.photos"
     const val SHARED_PREF_FILE_NAME = "prefs"
 
     const val REPO_URL_PUBLIC = "https://github.com/kinginu/PixelMask"

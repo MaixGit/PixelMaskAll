@@ -1,6 +1,5 @@
 package com.kinginu.pixelmask
 
-import com.kinginu.pixelmask.Constants.PACKAGE_NAME_GOOGLE_PHOTOS
 import com.kinginu.pixelmask.Constants.PREF_DEVICE_TO_SPOOF
 import com.kinginu.pixelmask.Constants.PREF_ENABLE_VERBOSE_LOGS
 import com.kinginu.pixelmask.Constants.PREF_MODULE_ENABLED
@@ -35,7 +34,7 @@ class PixelMaskHookEntry : IYukiHookXposedInit {
         }
 
         // Google Photos: device-prop spoof + hasSystemFeature override
-        loadApp(name = PACKAGE_NAME_GOOGLE_PHOTOS) {
+        loadApp{
             val sharedPrefs = prefs(SHARED_PREF_FILE_NAME)
 
             if (!sharedPrefs.getBoolean(PREF_MODULE_ENABLED, true)) return@loadApp
