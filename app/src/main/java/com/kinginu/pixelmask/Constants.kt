@@ -17,4 +17,6 @@ object Constants {
     const val PREF_MODULE_ENABLED = "PREF_MODULE_ENABLED"
     const val PREF_DEVICE_TO_SPOOF = "PREF_DEVICE_TO_SPOOF"
     const val PREF_ENABLE_VERBOSE_LOGS = "PREF_ENABLE_VERBOSE_LOGS"
+
+    const val PACKAGE_NAME_GOOGLE_PHOTOS = "com.google.android.apps.photos"
 }

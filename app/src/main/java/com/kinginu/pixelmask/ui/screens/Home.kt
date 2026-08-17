@@ -111,12 +111,24 @@ fun HomeScreen(
                 LinkCardItemData(
                     title = stringResource(R.string.report_working),
                     icon = Icons.Default.ThumbUp,
-                    onClick = { Utils.openReportIssue(working = true, context = context) }
+                    onClick = {
+                        Utils.openReportIssue(
+                            working = true,
+                            context = context,
+                            targetPackageName = Constants.PACKAGE_NAME_GOOGLE_PHOTOS
+                        )
+                    }
                 ),
                 LinkCardItemData(
                     title = stringResource(R.string.report_not_working),
                     icon = Icons.Default.BugReport,
-                    onClick = { Utils.openReportIssue(working = false, context = context) }
+                    onClick = {
+                        Utils.openReportIssue(
+                            working = false,
+                            context = context,
+                            targetPackageName = Constants.PACKAGE_NAME_GOOGLE_PHOTOS
+                        )
+                    }
                 ),
             )
         )

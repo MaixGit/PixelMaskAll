@@ -19,7 +19,7 @@
             android:value="true" />
         <meta-data
             android:name="xposeddescription"
-            android:value="Add Google Pixel features in Google Photos on any device." />
+            android:value="Spoof Pixel device properties for any app selected in scope." />
         <meta-data
             android:name="xposedsharedprefs"
             android:value="true" />
