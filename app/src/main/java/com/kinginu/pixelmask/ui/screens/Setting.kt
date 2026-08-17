@@ -155,7 +155,7 @@ fun SettingScreen(onSettingChanged: () -> Unit) {
                     icon = Icons.AutoMirrored.Filled.OpenInNew,
                     color = MaterialTheme.colorScheme.error,
                     onClick = {
-                        Utils.openAppInfo(Constants.PACKAGE_NAME_GOOGLE_PHOTOS, context)
+                        Utils.openAppInfo(packageName, context)
                         notifyChangedIfActive()
                     }
                 ),
@@ -163,7 +163,7 @@ fun SettingScreen(onSettingChanged: () -> Unit) {
                     title = stringResource(R.string.open_google_photos),
                     icon = Icons.AutoMirrored.Filled.OpenInNew,
                     onClick = {
-                        Utils.openApplication(Constants.PACKAGE_NAME_GOOGLE_PHOTOS, context)
+                        Utils.openApplication(packageName, context)
                     }
                 ),
             )

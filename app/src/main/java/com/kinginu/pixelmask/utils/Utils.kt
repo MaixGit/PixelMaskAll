@@ -37,7 +37,7 @@ object Utils {
 
     fun openApplication(packageName: String, context: Context) {
         // getLaunchIntentForPackage returns null when the package has no launcher activity
-        // (e.g. Photos uninstalled or disabled). Surface that to the user instead of
+        // (e.g. App uninstalled or disabled). Surface that to the user instead of
         // silently doing nothing.
         val launchIntent = context.packageManager.getLaunchIntentForPackage(packageName)
         if (launchIntent == null) {
@@ -54,7 +54,7 @@ object Utils {
     // Build a GitHub issue URL with the right template + as much pre-filled context as we
     // can responsibly collect, then open it in the browser. GitHub issue forms accept a
     // `template=<file>.yml` query param and one query param per field id.
-    fun openReportIssue(working: Boolean, context: Context) {
+    fun openReportIssue(working: Boolean, context: Context, targetPackageName: String) {
         val template = if (working) "report-working.yml" else "report-not-working.yml"
 
         val prefs = context.getSharedPreferences(Constants.SHARED_PREF_FILE_NAME, Context.MODE_PRIVATE)
@@ -66,20 +66,17 @@ object Utils {
         val device = "${Build.MANUFACTURER} ${Build.MODEL}"
         val androidVersion = "Android ${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})"
 
-        // Photos version is the single most useful field for triage: a regression
-        // from a Photos update is a common cause of "not working" reports, and
-        // users routinely forget to mention which build they're on. Permitted by
-        // the <queries> entry for com.google.android.apps.photos in the manifest.
-        val photosVersion = runCatching {
-            val pi = context.packageManager.getPackageInfo(packageName, 0)
+        val appVersion = runCatching {
+            val pi = context.packageManager.getPackageInfo(targetPackageName, 0)
             "${pi.versionName} (code ${PackageInfoCompat.getLongVersionCode(pi)})"
         }.getOrDefault("not installed")
 
         val diag = buildString {
             appendLine("PixelMask:           ${BuildConfig.VERSION_NAME} (code ${BuildConfig.VERSION_CODE})")
+            appendLine("Target app:          $targetPackageName")
+            appendLine("Target app version:  $appVersion")
             appendLine("Real device:         $device")
             appendLine("Android:             $androidVersion")
-            appendLine("Photos:              $photosVersion")
             appendLine("Build fingerprint:   ${Build.FINGERPRINT}")
             appendLine("Spoof target:        $spoofTarget")
             appendLine("Master switch:       $masterEnabled")
